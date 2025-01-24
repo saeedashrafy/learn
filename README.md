@@ -53,9 +53,9 @@ Simplify UI creation with less boilerplate code, intuitive state management, and
 ###Jetpack compose is an umberall term for 7 different libraries 
 
 + compose.animation 
-+ compose.foundation
++ compose.foundation: Core layout composables for arranging UI elements (Row, Box ...)
 + compose.material
 + compose.material3
-+ compose.ui
-+ compose.compiler 
-+ compose.runtime 
++ compose.ui : It provides the core functionalities required for layout, input handling, and graphics, which are essential for any UI toolkit
++ compose.compiler :When you write a composable function (like @Composable), the compose.compiler transforms it into a special format optimized for tracking state changes and managing recomposition efficiently.
++ compose.runtime : It determines when a composable should be created, updated (recomposed), or disposed.
