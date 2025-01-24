@@ -49,3 +49,13 @@ Simplify UI creation with less boilerplate code, intuitive state management, and
     </LinearLayout>
 </layout>
 ```
+
+###Jetpack compose is an umberall term for 7 different libraries 
+
++ compose.animation 
++ compose.foundation
++ compose.material
++ compose.material3
++ compose.ui
++ compose.compiler 
++ compose.runtime 
