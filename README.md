@@ -150,4 +150,7 @@ fun PreviewMessageCard() {
 }
 
 ```
-![](https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-02.png =100x30)
+
+#### This code creates two text elements inside the content view. However, since you haven't provided any information about how to arrange them, the text elements are drawn on top of each other, making the text unreadable
+
+<img src="https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-02.png" width="300" height="500" />
