@@ -59,3 +59,43 @@ Simplify UI creation with less boilerplate code, intuitive state management, and
 + compose.ui : It provides the core functionalities required for layout, input handling, and graphics, which are essential for any UI toolkit
 + compose.compiler :When you write a composable function (like @Composable), the compose.compiler transforms it into a special format optimized for tracking state changes and managing recomposition efficiently.
 + compose.runtime : It determines when a composable should be created, updated (recomposed), or disposed.
+
+### Composable functions: 
+#### First, display a “Hello world!” text by adding a text element inside the onCreate method. You do this by defining a content block, and calling the Text composable function. The setContent block defines the activity's layout where composable functions are called. Composable functions can only be called from other composable functions.
+
+```
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.Text
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Text("Hello world!")
+        }
+    }
+}
+```
+
+### Define a composable function
+#### To make a function composable, add the @Composable annotation. To try this out, define a MessageCard function which is passed a name, and uses it to configure the text element
+```
+// ...
+import androidx.compose.runtime.Composable
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MessageCard("Android")
+        }
+    }
+}
+
+@Composable
+fun MessageCard(name: String) {
+    Text(text = "Hello $name!")
+}
+```
