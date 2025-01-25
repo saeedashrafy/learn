@@ -266,6 +266,19 @@ A Composition can only be produced by an initial composition and updated by reco
 
 ![](https://developer.android.com/static/develop/ui/compose/images/lifecycle-composition.png)
 
+### If a composable is called multiple times, multiple instances are placed in the Composition. Each call has its own lifecycle in the Composition
+
+```
+@Composable
+fun MyComposable() {
+    Column {
+        Text("Hello")
+        Text("World")
+    }
+}
+```
+![](https://developer.android.com/static/develop/ui/compose/images/lifecycle-hierarchy.png)
+
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
 + Layout: Where to place it
