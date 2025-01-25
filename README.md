@@ -226,3 +226,33 @@ fun MessageCard(msg: Message) {
 ```
 
 <img src= "https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-06.png" width="300" height= "600" />
+
+### Lists
+#### Create a list of messages
+
+```
+// ...
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+
+@Composable
+fun Conversation(messages: List<Message>) {
+    LazyColumn {
+        items(messages) { message ->
+            MessageCard(message)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewConversation() {
+    ComposeTutorialTheme {
+        Conversation(SampleData.conversationSample)
+    }
+}
+
+```
+
+<img src= "https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson4-02.png" width="300" height="600" />
+#### In this code snippet, you can see that LazyColumn has an items child. It takes a List as a parameter and its lambda receives a parameter we’ve named message (we could have named it whatever we want) which is an instance of Message. In short, this lambda is called for each item of the provided List
