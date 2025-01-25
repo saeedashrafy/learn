@@ -50,7 +50,7 @@ Simplify UI creation with less boilerplate code, intuitive state management, and
 </layout>
 ```
 
-###Jetpack compose is an umberall term for 7 different libraries 
+### Jetpack compose is an umberall term for 7 different libraries 
 
 + compose.animation 
 + compose.foundation: Core layout composables for arranging UI elements (Row, Box ...)
@@ -97,5 +97,23 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MessageCard(name: String) {
     Text(text = "Hello $name!")
+}
+```
+
+### Preview your function in Android Studio 
+##### The @Preview annotation lets you preview your composable functions within Android Studio without having to build and install the app to an Android device or emulator. The annotation must be used on a composable function that does not take in parameters. For this reason, you can't preview the MessageCard function directly. Instead, make a second function named PreviewMessageCard, which calls MessageCard with an appropriate parameter. Add the @Preview annotation before @Composable
+
+```
+import androidx.compose.ui.tooling.preview.Preview
+
+@Composable
+fun MessageCard(name: String) {
+    Text(text = "Hello $name!")
+}
+
+@Preview
+@Composable
+fun PreviewMessageCard() {
+    MessageCard("Android")
 }
 ```
