@@ -267,6 +267,7 @@ A Composition can only be produced by an initial composition and updated by reco
 <img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-composition.png" width="400" height="200" />
 
 ### If a composable is called multiple times, multiple instances are placed in the Composition. Each call has its own lifecycle in the Composition
+###  The instance of a composable in Composition is identified by its call site. The Compose compiler considers each call site as distinct. Calling composables from multiple call sites will create multiple instances of the composable in Composition. 
 
 ```
 @Composable
@@ -278,6 +279,25 @@ fun MyComposable() {
 }
 ```
 <img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-hierarchy.png" width="400" height="200" />
+
+```
+@Composable
+fun LoginScreen(showError: Boolean) {
+    if (showError) {
+        LoginError()
+    }
+    LoginInput() // This call site affects where LoginInput is placed in Composition
+}
+
+@Composable
+fun LoginInput() { /* ... */ }
+
+@Composable
+fun LoginError() { /* ... */ }
+```
+
+#### In the code snippet above, LoginScreen will conditionally call the LoginError composable and will always call the LoginInput composable. Each call has a unique call site and source position, which the compiler will use to uniquely identify it.
+
 
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
