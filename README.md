@@ -257,3 +257,16 @@ fun PreviewConversation() {
 <img src= "https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson4-02.png" width="300" height="600" />
 
 #### In this code snippet, you can see that LazyColumn has an items child. It takes a List as a parameter and its lambda receives a parameter we’ve named message (we could have named it whatever we want) which is an instance of Message. In short, this lambda is called for each item of the provided List
+
+### Lifecycle of composables 
+
+#### When Jetpack Compose runs your composables for the first time, during initial composition, it will keep track of the composables that you call to describe your UI in a Composition. Then, when the state of your app changes, Jetpack Compose schedules a recomposition. Recomposition is when Jetpack Compose re-executes the composables that may have changed in response to state changes, and then updates the Composition to reflect any changes.
+
+A Composition can only be produced by an initial composition and updated by recomposition. The only way to modify a Composition is through recomposition
+
+![](https://developer.android.com/static/develop/ui/compose/images/lifecycle-composition.png)
+
+### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
++ Composition: What to show
++ Layout: Where to place it
++ Drawing: How to render it
