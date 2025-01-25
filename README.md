@@ -323,6 +323,12 @@ In the example above, Compose uses the execution order in addition to the call s
 
 <img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-newelement-bottom.png" width="600" height="200" />
 
+However, if the movies list changes by either adding to the top or the middle of the list, removing or reordering items, it'll cause a recomposition in all MovieOverview calls whose input parameter has changed position in the list. That's extremely important if, for example, MovieOverview fetches a movie image using a side effect. If recomposition happens while the effect is in progress, it will be cancelled and will start again.
+
+<img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-newelement-bottom.png" width="600" height= "200" />
+
+### Compose provides a way for you to tell the runtime what values you want to use to identify a given part of the tree: the key composable
+
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
 + Layout: Where to place it
