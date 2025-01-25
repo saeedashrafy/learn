@@ -255,4 +255,5 @@ fun PreviewConversation() {
 ```
 
 <img src= "https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson4-02.png" width="300" height="600" />
+
 #### In this code snippet, you can see that LazyColumn has an items child. It takes a List as a parameter and its lambda receives a parameter we’ve named message (we could have named it whatever we want) which is an instance of Message. In short, this lambda is called for each item of the provided List
