@@ -182,3 +182,47 @@ fun MessageCard(msg: Message) {
 }
 ```
 <img src="https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-05.png" width="300" height="600" />
+
+### Configure your layout
+#### Your message layout has the right structure but its elements aren't well spaced and the image is too big! To decorate or configure a composable, Compose uses modifiers. They allow you to change the composable's size, layout, appearance or add high-level interactions, such as making an element clickable. You can chain them to create richer composables. You'll use some of them to improve the layout.
+
+```
+// ...
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.dp
+
+@Composable
+fun MessageCard(msg: Message) {
+    // Add padding around our message
+    Row(modifier = Modifier.padding(all = 8.dp)) {
+        Image(
+            painter = painterResource(R.drawable.profile_picture),
+            contentDescription = "Contact profile picture",
+            modifier = Modifier
+                // Set image size to 40 dp
+                .size(40.dp)
+                // Clip image to be shaped as a circle
+                .clip(CircleShape)
+        )
+
+        // Add a horizontal space between the image and the column
+        Spacer(modifier = Modifier.width(8.dp))
+
+        Column {
+            Text(text = msg.author)
+            // Add a vertical space between the author and message texts
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = msg.body)
+        }
+    }
+}
+```
+
+<img src= "https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-06.png" width="300" height= "600" />
