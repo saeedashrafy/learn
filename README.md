@@ -298,6 +298,8 @@ fun LoginError() { /* ... */ }
 
 #### In the code snippet above, LoginScreen will conditionally call the LoginError composable and will always call the LoginInput composable. Each call has a unique call site and source position, which the compiler will use to uniquely identify it.
 
+#### Even though LoginInput went from being called first to being called second, the LoginInput instance will be preserved across recompositions. Additionally, because LoginInput doesn’t have any parameters that have changed across recomposition, the call to LoginInput will be skipped by Compose.
+
 
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
