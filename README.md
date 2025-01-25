@@ -264,7 +264,7 @@ fun PreviewConversation() {
 
 A Composition can only be produced by an initial composition and updated by recomposition. The only way to modify a Composition is through recomposition
 
-![](https://developer.android.com/static/develop/ui/compose/images/lifecycle-composition.png)
+<img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-composition.png" width="200" height="100" />
 
 ### If a composable is called multiple times, multiple instances are placed in the Composition. Each call has its own lifecycle in the Composition
 
@@ -277,7 +277,7 @@ fun MyComposable() {
     }
 }
 ```
-![](https://developer.android.com/static/develop/ui/compose/images/lifecycle-hierarchy.png)
+<img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-hierarchy.png" width="200" height="100" />
 
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
