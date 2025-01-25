@@ -1,4 +1,4 @@
-# Jetpack Compose
+![image](https://github.com/user-attachments/assets/ef99e22c-a1c7-4275-a404-f884d687045d)# Jetpack Compose
 ### Jetpack Compose: A Declarative, Modern, and Efficient UI Toolkit for Native Android Development
 Simplify UI creation with less boilerplate code, intuitive state management, and seamless integration with Kotlin, enabling faster and more flexible app development.
 
@@ -154,3 +154,31 @@ fun PreviewMessageCard() {
 #### This code creates two text elements inside the content view. However, since you haven't provided any information about how to arrange them, the text elements are drawn on top of each other, making the text unreadable
 
 <img src="https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-02.png" width="300" height="500" />
+
+### Using a Column and Row
+#### The Column function lets you arrange elements vertically. Add Column to the MessageCard function.
+You can use Row to arrange items horizontally and Box to stack elements
+```
+// ...
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
+import androidx.compose.ui.res.painterResource
+
+@Composable
+fun MessageCard(msg: Message) {
+    Row {
+        Image(
+            painter = painterResource(R.drawable.profile_picture),
+            contentDescription = "Contact profile picture",
+        )
+    
+       Column {
+            Text(text = msg.author)
+            Text(text = msg.body)
+        }
+  
+    }
+  
+}
+```
+<img src="https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-05.png" width="300" height="600" />
