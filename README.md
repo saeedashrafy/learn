@@ -300,6 +300,28 @@ fun LoginError() { /* ... */ }
 
 #### Even though LoginInput went from being called first to being called second, the LoginInput instance will be preserved across recompositions. Additionally, because LoginInput doesn’t have any parameters that have changed across recomposition, the call to LoginInput will be skipped by Compose.
 
+### Add extra information to help smart recompositions 
+#### Calling a composable multiple times will add it to Composition multiple times as well. When calling a composable multiple times from the same call site, Compose doesn’t have any information to uniquely identify each call to that composable, so the execution order is used in addition to the call site in order to keep the instances distinct. This behavior is sometimes all that is needed, but in some cases it can cause unwanted behavior. 
+
+```
+@Composable
+fun MoviesScreen(movies: List<Movie>) {
+    Column {
+        for (movie in movies) {
+            // MovieOverview composables are placed in Composition given its
+            // index position in the for loop
+            MovieOverview(movie)
+        }
+    }
+}
+
+```
+
+<img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-newelement-bottom.png" width="600" height="200" />
+
+In the example above, Compose uses the execution order in addition to the call site to keep the instance distinct in the Composition. If a new movie is added to the bottom of the list, Compose can reuse the instances already in the Composition since their location in the list haven't changed and therefore, the movie input is the same for those instances.
+
+<img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-newelement-bottom.png" width="600" height="200" />
 
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
