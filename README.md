@@ -117,3 +117,37 @@ fun PreviewMessageCard() {
     MessageCard("Android")
 }
 ```
+
+### Layouts:
+#### UI elements are hierarchical, with elements contained in other elements. In Compose, you build a UI hierarchy by calling composable functions from other composable functions.
+### Add multiple texts
+```
+// ...
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MessageCard(Message("Android", "Jetpack Compose"))
+        }
+    }
+}
+
+data class Message(val author: String, val body: String)
+
+@Composable
+fun MessageCard(msg: Message) {
+    Text(text = msg.author)
+    Text(text = msg.body)
+}
+
+@Preview
+@Composable
+fun PreviewMessageCard() {
+    MessageCard(
+        msg = Message("Lexi", "Hey, take a look at Jetpack Compose, it's great!")
+    )
+}
+
+```
+![](https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-02.png =100x30)
