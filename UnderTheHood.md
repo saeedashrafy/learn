@@ -73,4 +73,5 @@ fun Counter($composer: Composer) {
 + and finally composer.end
 
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*R19RTLWCEHmA8KvNLMRilQ.jpeg)
-  جچج
+
+> The 123, 456, or 789 are the compiler-generated keys used to define/identify the structure of the UI. If the call to composer.start has a group with the key 456, but in the array, it was previously stored with 123, then the compiler knows that the UI has changed its structure 
