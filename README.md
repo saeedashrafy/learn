@@ -355,8 +355,28 @@ fun MoviesScreenLazy(movies: List<Movie>) {
         }
     }
 }
-
 ```
+
+### Skipping if the inputs haven't changed
+#### During recomposition, some eligible composable functions can have their execution be skipped entirely if their inputs have not changed from the previous composition.
+
+A composable function is eligible for skipping unless:
++ The function has a non-Unit return type
+  ```
+  @Composable
+    fun getText(): String {
+    return "Hello"
+    }
+  ```
++ The function is annotated with @NonRestartableComposable or @NonSkippableComposable
+  ```
+  @NonSkippableComposable
+    @Composable
+    fun MyComposable() {
+     // always run
+    }
+  ``` 
++ If the inputs of a composable are of a type that Compose cannot recognize as Stable, the composable becomes non-skippable. This means Compose cannot reliably determine whether the input has changed or not.
 
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
