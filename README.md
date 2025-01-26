@@ -321,13 +321,26 @@ fun MoviesScreen(movies: List<Movie>) {
 
 In the example above, Compose uses the execution order in addition to the call site to keep the instance distinct in the Composition. If a new movie is added to the bottom of the list, Compose can reuse the instances already in the Composition since their location in the list haven't changed and therefore, the movie input is the same for those instances.
 
-<img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-newelement-bottom.png" width="600" height="200" />
 
 However, if the movies list changes by either adding to the top or the middle of the list, removing or reordering items, it'll cause a recomposition in all MovieOverview calls whose input parameter has changed position in the list. That's extremely important if, for example, MovieOverview fetches a movie image using a side effect. If recomposition happens while the effect is in progress, it will be cancelled and will start again.
 
-<img src="https://developer.android.com/static/develop/ui/compose/images/lifecycle-newelement-bottom.png" width="600" height= "200" />
-
 ### Compose provides a way for you to tell the runtime what values you want to use to identify a given part of the tree: the key composable
+#### By wrapping a block of code with a call to the key composable with one or more values passed in, those values will be combined to be used to identify that instance in the composition. The value for a key does not need to be globally unique, it needs to only be unique amongst the invocations of composables at the call site. So in this example, each movie needs to have a key that's unique among the movies; it's fine if it shares that key with some other composable elsewhere in the app.
+
+```
+@Composable
+fun MoviesScreenWithKey(movies: List<Movie>) {
+    Column {
+        for (movie in movies) {
+            key(movie.id) { // Unique ID for this movie
+                MovieOverview(movie)
+            }
+        }
+    }
+}
+```
+
+### With the above, even if the elements on the list change, Compose recognizes individual calls to MovieOverview and can reuse them
 
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
