@@ -1,6 +1,9 @@
 ## What does @Composable mean?
 #### An important thing to note is that Compose is not an annotation processor. Compose works with the aid of a Kotlin compiler plugin in the type checking and code generation phases of Kotlin: there is no annotation processor needed in order to use compose.
 
+
+### Each compose function can only be called from within another composable. This is because there’s a calling context object that we need to thread through all of the invocations.
+
 ```
 fun Example(a: () -> Unit, b: @Composable () -> Unit) {
    a() // allowed
@@ -13,3 +16,10 @@ fun Example(a: () -> Unit, b: @Composable () -> Unit) {
    b() // allowed
 }
 ```
+## Composer 
+
+#### We call this object the “Composer”. The implementation of the Composer contains a data structure that is closely related to a Gap Buffer. This data structure is commonly used in text editors.
+
+#### A gap buffer represents a collection with a current index or cursor. It is implemented in memory with a flat array. That flat array is larger than the collection of data that it represents, with the unused space referred to as the gap.
+
+![](https://miro.medium.com/v2/resize:fit:720/format:webp/0*0GgJdY76c_Kz0hs-)
