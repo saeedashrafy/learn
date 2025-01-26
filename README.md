@@ -378,6 +378,14 @@ A composable function is eligible for skipping unless:
   ``` 
 + If the inputs of a composable are of a type that Compose cannot recognize as Stable, the composable becomes non-skippable. This means Compose cannot reliably determine whether the input has changed or not.
 
+### Types that are considered Stable
+Some common types are recognized as Stable by Compose, even if they are not explicitly annotated with @Stable. These include:
+
+Primitive types such as Int, Long, Boolean, Float, Char, etc.
+Strings (String)
+Functions (Lambdas)
+These types are Immutable, and because of their immutability, they can easily be considered stable.  
+
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
 + Layout: Where to place it
