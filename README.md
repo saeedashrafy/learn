@@ -392,6 +392,82 @@ These types are Immutable, and because of their immutability, they can easily be
 
 #### Side effects, such as updating a database or making a network call, should be kept separate from the UI rendering logic to improve the performance and maintainability of the code.
 
++ SideEffect
++ LaunchedEffect
++ and DisposableEffect
+
+### SideEffect
+#### SideEffect is a Composable function that allows us to execute a side effect when its parent Composable is recomposed. A side effect is an operation that does not affect the UI directly, such as logging, analytics,
+
+```
+@Composable
+fun Counter() {
+    // Define a state variable for the count
+    val count = remember { mutableStateOf(0) }
+
+    // Use SideEffect to log the current value of count
+    SideEffect {
+        // Called on every recomposition
+        log("Count is ${count.value}")
+    }
+
+    Column {
+        Button(onClick = { count.value++ }) {
+            Text("Increase Count")
+        }
+
+        // With every state update, text is changed and recomposition is triggered
+        Text("Counter ${count.value}")
+    }
+}
+```
+
+### LaunchedEffect
+#### LaunchedEffect is a Composable function that executes a side effect in a separate coroutine scope. This function is useful for executing operations that can take a long time, such as network calls or animations, without blocking the UI thread.
+
+```
+ LaunchedEffect(isLoading.value) {
+        if (isLoading.value) {
+            // Perform a long-running operation, such as fetching data from a network
+            val newData = fetchData()
+            // Update the state with the new data
+            data.value = newData
+            isLoading.value = false
+        }
+    }
+```
+
+### DisposableEffect
+#### DisposableEffect is a Composable function that executes a side effect when its parent Composable is first rendered, and disposes of the effect when the Composable is removed from the UI hierarchy
+
+```
+@Composable
+fun TimerScreen() {
+    val elapsedTime = remember { mutableStateOf(0) }
+
+    DisposableEffect(Unit) {
+        val scope = CoroutineScope(Dispatchers.Default)
+        val job = scope.launch {
+            while (true) {
+                delay(1000)
+                elapsedTime.value += 1
+                log("Timer is still working ${elapsedTime.value}")
+            }
+        }
+
+        onDispose {
+            job.cancel()
+        }
+    }
+
+    Text(
+        text = "Elapsed Time: ${elapsedTime.value}",
+        modifier = Modifier.padding(16.dp),
+        fontSize = 24.sp
+    )
+}
+```
+
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
 + Layout: Where to place it
