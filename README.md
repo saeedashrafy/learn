@@ -344,6 +344,8 @@ fun MoviesScreenWithKey(movies: List<Movie>) {
 
 ### With the above, even if the elements on the list change, Compose recognizes individual calls to MovieOverview and can reuse them
 
+### Some composables have built-in support for the key composable. For example, LazyColumn accepts specifying a custom key in the items DSL
+
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
 + Layout: Where to place it
