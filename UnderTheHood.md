@@ -65,5 +65,12 @@ fun Counter($composer: Composer) {
 }
 ```
 
-### First, the compiler adds a call to the composer.start method and passes it a compile time generated key integer. It also passes the composer object into all of the composable invocations in the body of this function.
+### When this composer executes it does the following
++ Composer.start gets called and stores a group object
++ remember inserts a group object(it is required to skip resetting the values)
++ the value that mutableStateOf returns, the state instance is stored(as it triggers the recomposition).
++ Button stores a group, followed by each of its parameters(all the nested things(in a Depth-first traversal) are also inserted in the array).
++ and finally composer.end
 
+![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*R19RTLWCEHmA8KvNLMRilQ.jpeg)
+  جچج
