@@ -75,3 +75,41 @@ fun Counter($composer: Composer) {
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*R19RTLWCEHmA8KvNLMRilQ.jpeg)
 
 > The 123, 456, or 789 are the compiler-generated keys used to define/identify the structure of the UI. If the call to composer.start has a group with the key 456, but in the array, it was previously stored with 123, then the compiler knows that the UI has changed its structure 
+
+
+### Another Example
+
+```
+@Composable fun App() {
+ val result = getData()
+ if (result == null) {
+   Loading(...)
+ } else {
+   Header(result)
+   Body(result)
+ }
+}
+```
+
+```
+fun App($composer: Composer) {
+ val result = getData()
+ if (result == null) {
+   $composer.start(123)
+   Loading(...)
+   $composer.end()
+ } else {
+   $composer.start(456)
+   Header(result)
+   Body(result)
+   $composer.end()
+ }
+}
+```
+
+### Let’s assume that when this code first executes result is null. This inserts a group into the gap array and the loading screen runs.
+![](https://miro.medium.com/v2/resize:fit:720/format:webp/0*CnP4GnP1Pdp20fXY)
+
+### The second time the function runs let’s assume that result is no longer null so that the second branch of the if statement executes. This is where it gets interesting.
+
+> The call to composer.start has a group with the key 456. The compiler sees that the group in the slot table of 123 doesn’t match, so now it knows that the UI has changed in structure.
