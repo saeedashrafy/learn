@@ -29,3 +29,6 @@ fun Example(a: () -> Unit, b: @Composable () -> Unit) {
 
 ### When we have to perform recomposition, we will always start from the beginning of the array (i.e. reset the current index) and either update the item or skip it according to the states changed.
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*J41HewaIinyfU1xP-HhLHQ.jpeg)
+
+### If in any case, your compiler finds that the structure of the UI has changed (you might be showing some extra conditional UI/Composables), at this point we move the gap to the current position.
+![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*PGRSdnS3B_Ca3-zDiG49NQ.jpeg)
