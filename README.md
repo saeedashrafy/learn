@@ -386,6 +386,12 @@ Strings (String)
 Functions (Lambdas)
 These types are Immutable, and because of their immutability, they can easily be considered stable.  
 
+
+### Side Effects:
+#### The purpose of side effects in Jetpack Compose is to allow for the execution of non-UI related operations that change the state of the app outside of a Composable function in a controlled and predictable manner.
+
+#### Side effects, such as updating a database or making a network call, should be kept separate from the UI rendering logic to improve the performance and maintainability of the code.
+
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
 + Layout: Where to place it
