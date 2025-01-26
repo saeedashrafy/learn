@@ -130,11 +130,61 @@ fun App(items: List<String>, query: String) {
 ```
 @Composable
 fun App(items: List<String>, query: String) {
-    // استفاده از remember برای ذخیره‌ی نتایج فیلتر شده
     val results = remember(items, query) {
-        // این محاسبه فقط زمانی انجام می‌شود که items یا query تغییر کنند
         items.filter { it.contains(query, ignoreCase = true) }
     }
 ```
 
 ### The second time the function executes, remember looks at the new values being passed in and compare them with the old values. If neither of them has changed, then the filter operation is skipped and the previous result is returned, this is something called Positional memorization.
+
+
+## Storing parameters
+
+```
+@Composable fun Google(number: Int) {
+ Address(
+   number=number,
+   street="Amphitheatre Pkwy",
+   city="Mountain View",
+   state="CA"
+   zip="94043"
+ )
+}
+ 
+@Composable fun Address(
+ number: Int,
+ street: String,
+ city: String,
+ state: String,
+ zip: String
+) {
+ Text("$number $street")
+ Text(city)
+ Text(", ")
+ Text(state)
+ Text(" ")
+ Text(zip)
+}
+```
+
+### Compose stores the parameters of a composable function in the slot table. If this is the case, looking at the example above we see some redundancies: “Mountain View” and “CA”, which are added in the address invocation, are stored again in the underlying text invocations, so these strings will be stored twice.
+
+### We can get rid of this redundancy by adding the static parameter to Composable functions at the compiler level.
+‍‍‍‍
+```
+fun Google(
+ $composer: Composer,
+ $static: Int,
+ number: Int
+) {
+ Address(
+   $composer,
+   0b11110 or ($static and 0b1),
+   number=number,
+   street="Amphitheatre Pkwy",
+   city="Mountain View",
+   state="CA"
+   zip="94043"
+ )
+}
+```
