@@ -115,3 +115,26 @@ fun App($composer: Composer) {
 > [!IMPORTANT]
 > The call to composer.start has a group with the key 456. The compiler sees that the group in the slot table of 123 doesn’t match, so now it knows that the UI has changed in structure.
 
+## Positional Memoization
+
+```
+@Composable
+fun App(items: List<String>, query: String) {
+ val results = items.filter { it.matches(query) }
+ // ...
+}
+```
+
+### use remember
+
+```
+@Composable
+fun App(items: List<String>, query: String) {
+    // استفاده از remember برای ذخیره‌ی نتایج فیلتر شده
+    val results = remember(items, query) {
+        // این محاسبه فقط زمانی انجام می‌شود که items یا query تغییر کنند
+        items.filter { it.contains(query, ignoreCase = true) }
+    }
+```
+
+### The second time the function executes, remember looks at the new values being passed in and compare them with the old values. If neither of them has changed, then the filter operation is skipped and the previous result is returned, this is something called Positional memorization.
