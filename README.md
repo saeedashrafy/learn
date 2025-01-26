@@ -392,3 +392,10 @@ These types are Immutable, and because of their immutability, they can easily be
 + Drawing: How to render it
 
   ![](https://developer.android.com/static/develop/ui/compose/images/compose-phases.png)
+
+## Composition
+#### In the composition phase, the Compose runtime executes composable functions and outputs a tree structure that represents your UI. This UI tree consists of layout nodes that contain all the information needed for the next phases
+
+![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*3Xef-gRgeUi8WETr0fJSgQ.gif)
+
+  
