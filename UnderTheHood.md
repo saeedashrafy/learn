@@ -35,3 +35,6 @@ fun Example(a: () -> Unit, b: @Composable () -> Unit) {
 
 ### And now, add the new items in the array
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*gHuy1hQhwj7wqB-xl2OEFA.jpeg)
+
+> [!IMPORTANT]
+> The reason we chose this data structure is because we’re making a bet that, on average, UIs don’t change structure very much. When we have dynamic UIs, they change in terms of the values but they don’t change in structure nearly as often. When they do change their structure, they typically change in big chunks, so doing this O(n) gap move is a reasonable trade-off.
