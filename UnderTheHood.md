@@ -25,3 +25,4 @@ fun Example(a: () -> Unit, b: @Composable () -> Unit) {
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/0*0GgJdY76c_Kz0hs-)
 
 ### Once the composition begins, it will start inserting all required things(compose function and states) into this array.
+![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*JjOJ8mrThTM90IbB7cLaxg.jpeg)
