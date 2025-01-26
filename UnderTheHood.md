@@ -38,3 +38,32 @@ fun Example(a: () -> Unit, b: @Composable () -> Unit) {
 
 > [!IMPORTANT]
 > The reason we chose this data structure is because we’re making a bet that, on average, UIs don’t change structure very much. When we have dynamic UIs, they change in terms of the values but they don’t change in structure nearly as often. When they do change their structure, they typically change in big chunks, so doing this O(n) gap move is a reasonable trade-off.
+
+### Now, let’s see this array thing with Counter example:
+
+```
+@Composable
+fun Counter() {
+ var count by remember { mutableStateOf(0) }
+ Button(
+   text="Count: $count",
+   onPress={ count += 1 }
+ )
+}
+```
+
+```
+fun Counter($composer: Composer) {
+ $composer.start(123)
+ var count by remember($composer) { mutableStateOf(0) }
+ Button(
+   $composer,
+   text="Count: $count",
+   onPress={ count += 1 },
+ )
+ $composer.end()
+}
+```
+
+### First, the compiler adds a call to the composer.start method and passes it a compile time generated key integer. It also passes the composer object into all of the composable invocations in the body of this function.
+
