@@ -23,3 +23,5 @@ fun Example(a: () -> Unit, b: @Composable () -> Unit) {
 #### A gap buffer represents a collection with a current index or cursor. It is implemented in memory with a flat array. That flat array is larger than the collection of data that it represents, with the unused space referred to as the gap.
 
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/0*0GgJdY76c_Kz0hs-)
+
+### Once the composition begins, it will start inserting all required things(compose function and states) into this array.
