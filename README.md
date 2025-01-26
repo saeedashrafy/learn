@@ -346,6 +346,18 @@ fun MoviesScreenWithKey(movies: List<Movie>) {
 
 ### Some composables have built-in support for the key composable. For example, LazyColumn accepts specifying a custom key in the items DSL
 
+```
+@Composable
+fun MoviesScreenLazy(movies: List<Movie>) {
+    LazyColumn {
+        items(movies, key = { movie -> movie.id }) { movie ->
+            MovieOverview(movie)
+        }
+    }
+}
+
+```
+
 ### Jetpack Compose has a UI rendering pipeline that operates in three primary phases: Composition, Layout, and Drawing
 + Composition: What to show
 + Layout: Where to place it
