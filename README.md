@@ -396,6 +396,9 @@ These types are Immutable, and because of their immutability, they can easily be
 ## Composition
 #### In the composition phase, the Compose runtime executes composable functions and outputs a tree structure that represents your UI. This UI tree consists of layout nodes that contain all the information needed for the next phases
 
+## Layout
+#### Then, during the layout phase, each element in the tree measures its children, if any, and places them in the available 2D space:
+
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*3Xef-gRgeUi8WETr0fJSgQ.gif)
 
   
