@@ -390,3 +390,5 @@ These types are Immutable, and because of their immutability, they can easily be
 + Composition: What to show
 + Layout: Where to place it
 + Drawing: How to render it
+
+  ![](https://developer.android.com/static/develop/ui/compose/images/compose-phases.png)
