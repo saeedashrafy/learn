@@ -112,4 +112,6 @@ fun App($composer: Composer) {
 
 ### The second time the function runs let’s assume that result is no longer null so that the second branch of the if statement executes. This is where it gets interesting.
 
+> [!IMPORTANT]
 > The call to composer.start has a group with the key 456. The compiler sees that the group in the slot table of 123 doesn’t match, so now it knows that the UI has changed in structure.
+
