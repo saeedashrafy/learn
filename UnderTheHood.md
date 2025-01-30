@@ -116,26 +116,27 @@ fun App($composer: Composer) {
 > The call to composer.start has a group with the key 456. The compiler sees that the group in the slot table of 123 doesn’t match, so now it knows that the UI has changed in structure.
 
 ## Positional Memoization
+### Instead of tracking values by variable names, Compose associates them with their order in the UI hierarchy. This approach is called Positional Memoization.
 
 ```
 @Composable
-fun App(items: List<String>, query: String) {
- val results = items.filter { it.matches(query) }
- // ...
+fun Counter() {
+    var count by remember { mutableStateOf(0) }  // Value is stored in memory
+    Button(
+        text = "Count: $count",
+        onPress = { count++ }
+    )
 }
 ```
 
-### use remember
+When Counter() is first composed:
 
-```
-@Composable
-fun App(items: List<String>, query: String) {
-    val results = remember(items, query) {
-        items.filter { it.contains(query, ignoreCase = true) }
-    }
-```
+The remember { mutableStateOf(0) } value is stored at position X in the composition tree.
+When count changes and the composable recomposes:
 
-### The second time the function executes, remember looks at the new values being passed in and compare them with the old values. If neither of them has changed, then the filter operation is skipped and the previous result is returned, this is something called Positional memorization.
+Compose retrieves the previous value from position X and reuses it.
+remember doesn’t reset because its position remains unchanged in the tree.
+✅ Result: The count value persists across recompositions because Compose memorizes its position in the tree.
 
 
 ## Storing parameters
