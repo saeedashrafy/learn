@@ -227,6 +227,9 @@ fun MessageCard(msg: Message) {
 
 <img src= "https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-06.png" width="300" height= "600" />
 
+### Box 
+### Constraint Layout
+
 ### Lists
 #### Create a list of messages
 
