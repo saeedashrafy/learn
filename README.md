@@ -228,8 +228,43 @@ fun MessageCard(msg: Message) {
 <img src= "https://developer.android.com/static/develop/ui/compose/images/compose-tutorial/lesson2-06.png" width="300" height= "600" />
 
 ### Box 
-### Constraint Layout
+#### Box is a layout composable in Jetpack Compose that allows you to stack multiple elements on top of each other. It behaves similarly to FrameLayout in the traditional Android View system.
 
+### Constraint Layout
+```
+@Composable
+fun SimpleConstraintLayout() {
+    ConstraintLayout(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        // Create references to your views
+        val (box, button) = createGuidelines()
+
+        // Box composable with constraints
+        Box(
+            modifier = Modifier.constrainAs(box) {
+                top.linkTo(parent.top)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+            }
+        ) {
+            Text("Hello from Box!", color = Color.White)
+        }
+
+        // Button composable with constraints
+        Button(
+            onClick = { /* Handle click */ },
+            modifier = Modifier.constrainAs(button) {
+                bottom.linkTo(parent.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+            }
+        ) {
+            Text("Click me")
+        }
+    }
+}
+```
 ### Lists
 #### Create a list of messages
 
