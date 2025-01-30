@@ -360,26 +360,13 @@ fun MoviesScreenLazy(movies: List<Movie>) {
 }
 ```
 
-### Skipping if the inputs haven't changed
 #### During recomposition, some eligible composable functions can have their execution be skipped entirely if their inputs have not changed from the previous composition.
 
 A composable function is eligible for skipping unless:
-+ The function has a non-Unit return type
-  ```
-  @Composable
-    fun getText(): String {
-    return "Hello"
-    }
-  ```
-+ The function is annotated with @NonRestartableComposable or @NonSkippableComposable
-  ```
-  @NonSkippableComposable
-    @Composable
-    fun MyComposable() {
-     // always run
-    }
-  ``` 
-+ If the inputs of a composable are of a type that Compose cannot recognize as Stable, the composable becomes non-skippable. This means Compose cannot reliably determine whether the input has changed or not.
++ Its inputs have not changed
++ Its output does not affect the UI or returns a constant value
++ It does not use mutable state (State, remember) or any changing variables
+
 
 ### Types that are considered Stable
 Some common types are recognized as Stable by Compose, even if they are not explicitly annotated with @Stable. These include:
