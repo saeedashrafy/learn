@@ -364,7 +364,8 @@ fun MoviesScreenLazy(movies: List<Movie>) {
 
 A composable function is eligible for skipping unless:
 + Its inputs have not changed
-+ Its output does not affect the UI or returns a constant valuعث
++ Its output does not affect the UI or returns a constant value
++ If a class or data is Stable, Compose can use it in Skipping without needing a thorough check.
 
 ### Types that are considered Stable
 Some common types are recognized as Stable by Compose, even if they are not explicitly annotated with @Stable. These include:
