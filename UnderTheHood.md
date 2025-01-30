@@ -18,7 +18,7 @@ fun Example(a: () -> Unit, b: @Composable () -> Unit) {
 ```
 ## Composer 
 
-#### We call this object the “Composer”. The implementation of the Composer contains a data structure that is closely related to a Gap Buffer. This data structure is commonly used in text editors.
+#### It keeps track of what has changed in a composable function and determines whether it should be re-executed (recomposed) or skipped. The implementation of the Composer contains a data structure that is closely related to a Gap Buffer. This data structure is commonly used in text editors.
 
 #### A gap buffer represents a collection with a current index or cursor. It is implemented in memory with a flat array. That flat array is larger than the collection of data that it represents, with the unused space referred to as the gap.
 
