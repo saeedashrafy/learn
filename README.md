@@ -425,13 +425,56 @@ A composable function is eligible for skipping unless:
 + Its output does not affect the UI or returns a constant value
 + If a class or data is Stable, Compose can use it in Skipping without needing a thorough check.
 
-### Types that are considered Stable
-Some common types are recognized as Stable by Compose, even if they are not explicitly annotated with @Stable. These include:
+### The stable parameter property and the @Stable annotation are different in Jetpack Compose.
 
-Primitive types such as Int, Long, Boolean, Float, Char, etc.
-Strings (String)
-Functions (Lambdas)
-These types are Immutable, and because of their immutability, they can easily be considered stable.  
+1️⃣ Stable as a General Concept (Parameter Stability)
+2️⃣ @Stable Annotation (Explicit Stability Declaration)
+
+### Both help with recomposition optimization, but they work differently.
+
+### 1️⃣ Stable as a General Concept (Parameter Stability)
+#### When we say a value or parameter is stable, it means:
+✅ It hasn’t changed between recompositions.
+✅ Or, if it has changed, Compose can track those changes efficiently.
+✅ This is automatically determined by Compose—no need to use @Stable.
+
+🔹 Examples (without @Stable)
+
+```
+data class User(val name: String, val age: Int) // Immutable class
+
+@Composable
+fun UserProfile(user: User) {
+    Text(text = "Name: ${user.name}, Age: ${user.age}")
+}
+```
+Why is user: User stable?
+✅ User is immutable (all properties are val).
+✅ Compose automatically considers it stable and skips recomposition if user doesn't change.
+
+```
+data class Counter(var value: Int) // Mutable property
+```
+
+### This class is mutable (var value can change).
+### Compose does not automatically consider it Stable because it doesn't know how to track changes efficiently.
+### If you use this in a Composable, Compose may or may not skip recomposition—depending on whether it detects a change.
+
+### 2️⃣ @Stable Annotation (Explicit Stability Declaration)
+
+```
+@Stable
+data class Counter(var count: Int) // Mutable, but explicitly stable
+
+@Composable
+fun CounterDisplay(counter: Counter) {
+    Text(text = "Count: ${counter.count}")
+}
+```
+
+Why use @Stable here?
+✅ count is var (mutable), but @Stable tells Compose to only recompose when count changes.
+✅ Without @Stable, Compose might recompose even when count hasn’t changed.
 
 
 ### Side Effects:
