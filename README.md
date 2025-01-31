@@ -261,7 +261,7 @@ fun SimpleConstraintLayout() {
         modifier = Modifier.fillMaxSize()
     ) {
         // Create references to your views
-        val (box, button) = createGuidelines()
+        val (box, button) = createRefs()
 
         // Box composable with constraints
         Box(
