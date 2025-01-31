@@ -222,6 +222,37 @@ fun MessageCard(msg: Message) {
 ### Box 
 #### Box is a layout composable in Jetpack Compose that allows you to stack multiple elements on top of each other. It behaves similarly to FrameLayout in the traditional Android View system.
 
+```
+@Composable
+fun ImageWithTextOverlay() {
+    Box(
+        modifier = Modifier
+            .size(200.dp) 
+            .clip(RoundedCornerShape(12.dp)) 
+    ) {
+        // تصویر
+        Image(
+            painter = painterResource(R.drawable.profile_picture),
+            contentDescription = "تصویر پروفایل",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+
+        // متن روی تصویر
+        Text(
+            text = "Profile Picture",
+            color = Color.White,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .align(Alignment.BottomCenter) 
+                .background(Color.Black.copy(alpha = 0.6f), RoundedCornerShape(4.dp)) // پس‌زمینه شفاف
+                .padding(4.dp) // فاصله داخلی
+        )
+    }
+}
+```
+
 ### Constraint Layout
 ```
 @Composable
