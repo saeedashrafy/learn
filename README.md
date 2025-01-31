@@ -3,15 +3,25 @@
 Simplify UI creation with less boilerplate code, intuitive state management, and seamless integration with Kotlin, enabling faster and more flexible app development.
 
 ## What challenges does Compose address?
-#### When we write code, we create modules that consist of multiple units. Coupling is the dependency among units in different modules and reflects the ways in which parts of one module influence parts of other modules. Cohesion is instead the relationship between the units within a module, and indicates how well grouped the units in the module are.
+#### Coupling vs. Cohesion in Software Design
+#### When writing maintainable software, our goal is to minimize coupling (dependencies between modules) and maximize cohesion (how well units within a module are grouped).
++ Coupling:  The dependency between units in different modules. High coupling means changes in one module require changes in others.
++ Cohesion: The relationship between units within a module. High cohesion means the module’s units are well-organized and focused.
+
 ![sepration of concern](https://miro.medium.com/v2/resize:fit:1024/1*fW9xf6fwPtxxNOIntoWBeA.png)
 
 ### When writing maintainable software, our goal is to minimize coupling and maximize cohesion.
 #### When we have highly coupled modules, making a change to code in one place means having to make many other changes to other modules.
 
 
-#### The view model provides data to the layout. It turns out there can be a lot of dependencies
-#### a lot of coupling between the view model and the layout
+### The Problem with Traditional Android UI Development
+
+#### In traditional Android development, the ViewModel provides data to the XML layout, creating tight coupling between the two. This leads to:
+
++ High dependency: Changes in the ViewModel often require changes in the layout.
++ Boilerplate code: XML layouts and ViewModel bindings require repetitive code.
++ Complex state management: Managing UI state across lifecycle events can be error-prone.
+
 ![viewModel](https://miro.medium.com/v2/resize:fit:1400/0*KqhjlWMPRossggev)
 
 ### exmaple of high coupling between view(xml) and viewModel
@@ -19,33 +29,15 @@ Simplify UI creation with less boilerplate code, intuitive state management, and
 ```
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <variable
-            name="viewModel"
-            type="com.example.app.UserViewModel" />
+        <variable name="viewModel" type="com.example.app.UserViewModel" />
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <!-- Bound to ViewModel properties -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.userName}" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(viewModel.userAge)}" />
-
-        <!-- Directly tied to ViewModel methods -->
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.updateName(`Jane Doe`)}"
-            android:text="Update Name" />
+        <TextView android:text="@{viewModel.userName}" />
+        <TextView android:text="@{String.valueOf(viewModel.userAge)}" />
+        <Button android:onClick="@{() -> viewModel.updateName(`Jane Doe`)}" />
     </LinearLayout>
 </layout>
 ```
@@ -58,7 +50,7 @@ Simplify UI creation with less boilerplate code, intuitive state management, and
 + compose.material3
 + compose.ui : It provides the core functionalities required for layout, input handling, and graphics, which are essential for any UI toolkit
 + compose.compiler :When you write a composable function (like @Composable), the compose.compiler transforms it into a special format optimized for tracking state changes and managing recomposition efficiently.
-+ compose.runtime : It determines when a composable should be created, updated (recomposed), or disposed.
++ compose.runtime : Manages state and recomposition.
 
 ### Composable functions: 
 #### First, display a “Hello world!” text by adding a text element inside the onCreate method. You do this by defining a content block, and calling the Text composable function. The setContent block defines the activity's layout where composable functions are called. Composable functions can only be called from other composable functions.
