@@ -434,11 +434,11 @@ A composable function is eligible for skipping unless:
 
 ### 1️⃣ Stable as a General Concept (Parameter Stability)
 #### When we say a value or parameter is stable, it means:
-✅ It hasn’t changed between recompositions.
-✅ Or, if it has changed, Compose can track those changes efficiently.
-✅ This is automatically determined by Compose—no need to use @Stable.
+#### ✅ It hasn’t changed between recompositions.
+#### ✅ Or, if it has changed, Compose can track those changes efficiently.
+#### ✅ This is automatically determined by Compose—no need to use @Stable.
 
-🔹 Examples (without @Stable)
+###🔹 Examples (without @Stable)
 
 ```
 data class User(val name: String, val age: Int) // Immutable class
@@ -448,9 +448,9 @@ fun UserProfile(user: User) {
     Text(text = "Name: ${user.name}, Age: ${user.age}")
 }
 ```
-Why is user: User stable?
-✅ User is immutable (all properties are val).
-✅ Compose automatically considers it stable and skips recomposition if user doesn't change.
+### Why is user: User stable?
+#### ✅ User is immutable (all properties are val).
+#### ✅ Compose automatically considers it stable and skips recomposition if user doesn't change.
 
 ```
 data class Counter(var value: Int) // Mutable property
