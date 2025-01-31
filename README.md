@@ -477,6 +477,26 @@ Why use @Stable here?
 ✅ Without @Stable, Compose might recompose even when count hasn’t changed.
 
 
+###  @Immutable in Jetpack Compose
+#### The @Immutable annotation in Jetpack Compose tells the compiler that a class is fully immutable—meaning its properties cannot change after initialization.
+
+```
+@Immutable
+data class User(val name: String, val age: Int)
+
+@Composable
+fun UserProfile(user: User) {
+    Text(text = "Name: ${user.name}, Age: ${user.age}")
+}
+```
+
+### Why use @Immutable here?
+#### ✅ User is already immutable (all val properties).
+#### ✅ But Compose doesn’t automatically know that it's immutable.
+#### ✅ By adding @Immutable, we guarantee that Compose will never recompose unless the User object itself changes.
+
+
+
 ### Side Effects:
 #### The purpose of side effects in Jetpack Compose is to allow for the execution of non-UI related operations that change the state of the app outside of a Composable function in a controlled and predictable manner.
 
