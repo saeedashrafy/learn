@@ -10,9 +10,11 @@
 ## How do they refer to the context object?
 ## Inside the lambda of a scope function, the context object could be referenced in 2 ways
 
-# as a lambda receiver (this)
+## as a lambda receiver (this)
 ## lambda argument (it)
 
+![](https://github.com/saeedashrafy/learn/blob/main/Screenshot%201403-12-05%20at%2007.08.51.png)
+ 
 
 @kotlin.internal.InlineOnly
 public inline fun <T, R> T.let(block: (T) -> R): R {
