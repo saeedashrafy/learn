@@ -43,7 +43,7 @@ if(something != null) {
 ```
 
 ## apply
-## bContext object: this
+## Context object: this
 ### Returns: The same object (useful for builder-style modifications)
 ### Use case: Configure an object.
 
@@ -65,5 +65,6 @@ class Person {
 val person = Person().apply {
   name = "Jeremy"
   age = 31
+  println("Updated age: $age")
 }
 ```
