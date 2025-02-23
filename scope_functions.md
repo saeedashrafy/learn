@@ -27,6 +27,16 @@ public inline fun <T, R> T.let(block: (T) -> R): R {
 ```
 
 ```
+val somethingObject = SomethingFactory.getSomething()
+  somethingObject?.let { something ->
+    
+  }
+
+if(something != null) {
+}
+```
+
+```
 @kotlin.internal.InlineOnly
 public inline fun <T> T.apply(block: T.() -> Unit): T {
     contract {
