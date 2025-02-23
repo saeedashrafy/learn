@@ -68,3 +68,13 @@ val person = Person().apply {
   println("Updated age: $age")
 }
 ```
+## also
+## Context object: it
+### Returns: The same object
+### Use case: Perform additional actions (like logging/debugging).
+
+```
+val numbers = mutableListOf(1, 2, 3).also {
+    println("Initial list: $it")
+}
+```
