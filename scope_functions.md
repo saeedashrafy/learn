@@ -16,7 +16,7 @@
 ![](https://github.com/saeedashrafy/learn/blob/main/Screenshot%201403-12-05%20at%2007.08.51.png)
 
 
-## 1️⃣ let
+## let
 ## Context object: it
 ### Returns: Result of the lambda expression
 ### Use case: Perform operations on a nullable object, transformation, chaining functions.
@@ -41,6 +41,11 @@ val somethingObject = SomethingFactory.getSomething()
 if(something != null) {
 }
 ```
+
+## apply
+## bContext object: this
+### Returns: The same object (useful for builder-style modifications)
+### Use case: Configure an object.
 
 ```
 @kotlin.internal.InlineOnly
