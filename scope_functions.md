@@ -15,7 +15,7 @@
 
 ![](https://github.com/saeedashrafy/learn/blob/main/Screenshot%201403-12-05%20at%2007.08.51.png)
  
-
+```
 @kotlin.internal.InlineOnly
 public inline fun <T, R> T.let(block: (T) -> R): R {
     contract {
@@ -24,6 +24,9 @@ public inline fun <T, R> T.let(block: (T) -> R): R {
     return block(this)
 }
 
+```
+
+```
 @kotlin.internal.InlineOnly
 public inline fun <T> T.apply(block: T.() -> Unit): T {
     contract {
@@ -32,3 +35,4 @@ public inline fun <T> T.apply(block: T.() -> Unit): T {
     block()
     return this
 }
+```
