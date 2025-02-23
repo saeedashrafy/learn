@@ -16,7 +16,7 @@
 ![](https://github.com/saeedashrafy/learn/blob/main/Screenshot%201403-12-05%20at%2007.08.51.png)
 
 
-1️⃣ let
+## 1️⃣ let
 ## Context object: it
 ### Returns: Result of the lambda expression
 ### Use case: Perform operations on a nullable object, transformation, chaining functions.
@@ -35,7 +35,7 @@ public inline fun <T, R> T.let(block: (T) -> R): R {
 ```
 val somethingObject = SomethingFactory.getSomething()
   somethingObject?.let { something ->
-    
+      println("Hello, $it") 
   }
 
 if(something != null) {
