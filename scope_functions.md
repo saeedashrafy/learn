@@ -14,6 +14,12 @@
 ## lambda argument (it)
 
 ![](https://github.com/saeedashrafy/learn/blob/main/Screenshot%201403-12-05%20at%2007.08.51.png)
+
+
+1️⃣ let
+## Context object: it
+### Returns: Result of the lambda expression
+### Use case: Perform operations on a nullable object, transformation, chaining functions.
  
 ```
 @kotlin.internal.InlineOnly
@@ -45,6 +51,7 @@ public inline fun <T> T.apply(block: T.() -> Unit): T {
     block()
     return this
 }
+
 class Person {
   var name: String = ""
   var age: Int = 0
