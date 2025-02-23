@@ -78,3 +78,29 @@ val numbers = mutableListOf(1, 2, 3).also {
     println("Initial list: $it")
 }
 ```
+
+## with
+## Context object: this
+### Returns: Result of the lambda expression
+### Use case: Work with an object without modifying it.
+
+```
+val person = Person("Alice", 25)
+val introduction = with(person) {
+    "Hi, I'm $name and I'm $age years old."
+}
+println(introduction)
+```
+
+## run
+## Context object: this
+### Returns: Result of the lambda expression
+### Use case: Execute a block of code and return the result.
+
+```
+val person = Person("John", 30)
+val bio = person.run {
+    "My name is $name and I am $age years old."
+}
+println(bio)
+```
