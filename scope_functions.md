@@ -45,4 +45,13 @@ public inline fun <T> T.apply(block: T.() -> Unit): T {
     block()
     return this
 }
+class Person {
+  var name: String = ""
+  var age: Int = 0
+}
+
+val person = Person().apply {
+  name = "Jeremy"
+  age = 31
+}
 ```
